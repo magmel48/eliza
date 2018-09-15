@@ -1,6 +1,12 @@
-Настройка
-Создайте файл данных доступа по адресу ~/.aws/credentials в ОС Mac/Linux или C:\Users\USERNAME\.aws\credentials в ОС Windows.
+How to start
+============
 
+Create file ~/.aws/credentials for Linux or MacOS or C:\Users\USERNAME\.aws\credentials for Windows with the following content:
+
+```js
 [default]
-aws_access_key_id = TODO
-aws_secret_access_key = TODO
+aws_access_key_id = <FEED_ME>
+aws_secret_access_key = <FEED_ME>
+```
+
+Put instead of <FEED_ME> proper content.
