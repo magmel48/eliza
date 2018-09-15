@@ -1,0 +1,63 @@
+* {
+	font-family: 'Roboto', sans-serif;
+}
+
+body {
+	background-color: #000;
+	height: 100%;
+	overflow: hidden;
+}
+
+aside.logo {
+	top: 50px;
+	left: 50px;
+	position: absolute;
+	width: 22px;
+	height: 22px;
+}
+
+aside.menu {
+	top: 50px;
+	right: 50px;
+	position: absolute;
+}
+aside.menu > a {
+	color: #fff;
+	font-size: 16px;
+	line-height: 19px;
+	text-decoration: none;
+	margin-left: 44px;
+	display: inline-block;
+}
+aside.menu > a.menu__active {
+	border-bottom: 1px solid #950ac6;
+	padding-bottom: 4px;
+}
+
+h1 {
+	color: #fff;
+	font-size: 72px;
+	font-weight: 400;
+	font-family: 'Montserrat', sans-serif;
+	line-height: 88px;
+	text-align: center;
+}
+
+section.instructions {
+	text-align: center;
+}
+section.instructions > button.instructions__start {
+	background: none;
+	color: #fff;
+	font-size: 18px;
+	line-height: 21px;
+	border: 1px solid #ee1a1a;
+	border-radius: 3px;
+	padding: 16px 33px;
+	outline: none;
+}
+section.instructions > p.instructions__quote {
+	font-size: 16px;
+	line-height: 19px;
+	color: #52495a;
+}
