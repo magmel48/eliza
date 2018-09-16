@@ -153,6 +153,29 @@ div.page_manipulate {
 	width: 100%;
 }
 
+div.page_faces {
+	width: 100%;
+}
+section.search {
+	width: unset;
+	padding: 15px;
+	display: flex;
+	position: relative;
+}
+section.search > input.search__input {
+	width: 100%;
+	height: 48px;
+	background: transparent;
+	border: 1px solid #950ac6;
+	border-radius: 3px;
+	padding: 0 10px;
+}
+section.search > img.search__glass {
+	position: absolute;
+	right: 28px;
+	top: 29px;
+}
+
 section.manifest {
 	font-size: 16px;
 	line-height: 19px;
@@ -177,6 +200,17 @@ section.manifest p.manifest__author {
 	}
 
 	div.page_manifest {
+		height: 100vh;
+		top: 43px;
+    position: relative;
+	}
+
+	div.page_faces > h1 {
+		font-size: 18px;
+		line-height: 22px;
+	}
+
+	div.page_faces {
 		height: 100vh;
 		top: 43px;
     position: relative;
