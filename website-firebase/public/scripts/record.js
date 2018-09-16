@@ -11,6 +11,10 @@ const recordingReady = () => {
 	let clearRecordInterval;
 
 	recordEl.addEventListener('click', () => {
+		if (clearRecordInterval) {
+			return;
+		}
+
 		clientId = nameEl.value;
 		nameEl.value = ''; // to support new names
 
@@ -46,6 +50,7 @@ const recordingReady = () => {
 				} catch (e) { }
 
 				clearInterval(clearRecordInterval);
+				clearRecordInterval = null;
 			}
 		}, 10);
 	});
