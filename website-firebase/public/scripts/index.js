@@ -1,3 +1,6 @@
+const mediator = new Mediator();
+console.log('mediator is ok.');
+
 const pagesReady = () => {
 	console.log('pages interaction is ready.');
 
@@ -16,6 +19,8 @@ const pagesReady = () => {
 		for (let i = 0; i !== pagesSelector.length; ++i) {
 			pagesSelector.item(i).classList.add('hidden');
 		}
+
+		mediator.publish('page_switch');
 	};
 
 	facesEl.addEventListener('click', () => {

@@ -49,6 +49,12 @@ const sliderReady = () => {
 		sliderEl.addEventListener('mousemove', handleMove);
 		document.addEventListener('mouseup', handleEnd);
 	}
+
+	// to avoid any issues with styling
+	mediator.subscribe('page_switch', () => {
+		console.log('re-initializing slider.');
+		isInitialized = false;
+	});
 };
 
 document.addEventListener('DOMContentLoaded', sliderReady);
