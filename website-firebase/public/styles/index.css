@@ -162,3 +162,22 @@ section.manifest p.manifest__author {
 	top: 20px;
 	position: relative;
 }
+@media (max-width: 375px) {
+	.row {
+		display: block;
+	}
+
+	.col {
+		display: block;
+		flex: unset;
+	}
+
+	section.manifest.row {
+		width: unset;
+		padding: 10px;
+	}
+
+	section.manifest.row > aside.col {
+		padding: 0;
+	}
+}
