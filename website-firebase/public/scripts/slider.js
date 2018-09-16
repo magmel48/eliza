@@ -5,6 +5,7 @@ const is_touch_device = () => {
 const sliderReady = () => {
 	console.log('slider is ready.');
 
+	const sliderId = 1; // hardcode for now
 	const sliderEl = document.getElementsByClassName('slider').item(0);
 	const sliderHandleEl = document.getElementsByClassName('slider__handle').item(0);
 
@@ -19,8 +20,10 @@ const sliderReady = () => {
 		isOnMove = true;
 	};
 
-	const handleMove = ({ clientX }) => {
+	const handleMove = (event) => {
 		if (isOnMove) {
+			const { clientX, targetTouches } = event;
+
 			if (!isInitialized) {
 				const { width } = sliderEl.getBoundingClientRect();
 				const { left, width: handleWidth } = sliderHandleEl.getBoundingClientRect();
@@ -31,8 +34,20 @@ const sliderReady = () => {
 				isInitialized = true;
 			}
 
-			const position = Math.min(clientX - sliderHandleLeft, sliderWidth - sliderHandleWidth);
+			let x = clientX;
+			if (typeof x === 'undefined') {
+				x = targetTouches[0].clientX;
+			}
+
+			const position = Math.min(x - sliderHandleLeft, sliderWidth - sliderHandleWidth);
 			sliderHandleEl.style.width = `${position}px`;
+
+			setTimeout(() => { // non-blocking
+				const firebaseValue = Math.max(0, position / (sliderWidth - sliderHandleWidth));
+				try {
+					db.ref(`/common/${sliderId}`).set(firebaseValue);
+				} catch (e) {}
+			}, 0);
 		}
 	};
 

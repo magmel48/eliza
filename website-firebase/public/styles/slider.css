@@ -5,6 +5,12 @@
 	border-radius: 3px;
 	position: relative;
 }
+@media (max-width: 375px) {
+	.slider {
+		width: unset;
+		margin: 0 15px;
+	}
+}
 
 .slider > .slider__handle {
 	width: 0;

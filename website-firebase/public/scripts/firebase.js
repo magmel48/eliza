@@ -6,6 +6,8 @@ const firebaseReady = () => {
 	} catch (e) {
 		console.error('firebase initialization error.', e);
 	}
+
+	window.db = firebase.database();
 };
 
 document.addEventListener('DOMContentLoaded', firebaseReady);

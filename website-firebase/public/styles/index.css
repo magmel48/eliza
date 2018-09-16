@@ -14,6 +14,10 @@ body {
 	align-items: center;
 }
 
+main {
+	width: 100%;
+}
+
 .hidden {
 	display: none!important;
 }
@@ -143,6 +147,10 @@ section.instructions > p.instructions__quote {
 		font-size: 14px;
 		line-height: 16px;
 	}
+}
+
+div.page_manipulate {
+	width: 100%;
 }
 
 section.manifest {
