@@ -6,6 +6,9 @@ body {
 	background-color: #000;
 	height: 100%;
 	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 aside.logo {
@@ -34,6 +37,14 @@ aside.menu > a.menu__active {
 	padding-bottom: 4px;
 }
 
+aside.social {
+	bottom: 50px;
+	left: 50px;
+	position: absolute;
+	width: 11px;
+	height: 22px;
+}
+
 h1 {
 	color: #fff;
 	font-size: 72px;
@@ -55,6 +66,7 @@ section.instructions > button.instructions__start {
 	border-radius: 3px;
 	padding: 16px 33px;
 	outline: none;
+	cursor: pointer;
 }
 section.instructions > p.instructions__quote {
 	font-size: 16px;
