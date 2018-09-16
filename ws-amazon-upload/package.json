@@ -1,13 +1,13 @@
 {
   "name": "ws-amazon-upload",
   "version": "1.0.0",
-  "description": "",
+  "description": "uploads your video on s3 storage",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "eliza",
+  "license": "MIT",
   "dependencies": {
     "aws-sdk": "^2.315.0",
     "express": "^4.16.3",
