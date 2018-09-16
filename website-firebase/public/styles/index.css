@@ -34,18 +34,42 @@ main {
 	text-align: right;
 }
 
+button.button {
+	background: none;
+	color: #fff;
+	font-size: 18px;
+	line-height: 21px;
+	background-color: rgba(149, 10, 198, 0.5);
+	border: none;
+	border-radius: 3px;
+	padding: 16px 33px;
+	outline: none;
+	cursor: pointer;
+}
+
+input {
+	height: 48px;
+	background: transparent;
+	border: 1px solid #950ac6;
+	border-radius: 3px;
+	padding: 0 10px;
+	outline: none;
+}
+
 aside.logo {
 	top: 50px;
 	left: 50px;
 	position: absolute;
 	width: 22px;
 	height: 22px;
+	z-index: 9999;
 }
 
 aside.menu, aside.mobile-menu {
 	top: 50px;
 	right: 50px;
 	position: absolute;
+	z-index: 9999;
 }
 aside.menu > a, aside.mobile-menu > a {
 	color: #fff;
@@ -117,20 +141,50 @@ h1 {
 	}
 }
 
+section.login {
+	width: unset;
+	padding: 0 60px;
+	display: flex;
+	position: relative;
+	flex-direction: column;
+}
+section.login > input.login__name {
+	width: unset;
+	margin-bottom: 32px;
+	color: #fff;
+}
+section.login > button.login__start {
+	width: 100%;
+}
+
+section.record {
+	width: unset;
+	padding: 15px;
+	display: flex;
+}
+section.record > button.record__start {
+	height: 88px;
+	border-radius: 2px;
+	background-color: #1f1e1f;
+	color: #fff;
+	outline: none;
+	flex: 50%;
+	margin-right: 10px;
+}
+section.record > span.record__seconds {
+	height: 86px;
+	color: #fff;
+	flex: 50%;
+	display: flex;
+	border: 1px solid #fff;
+	border-radius: 3px;
+	justify-content: center;
+	align-items: center;
+	margin-left: 10px;
+}
+
 section.instructions {
 	text-align: center;
-}
-section.instructions > button.instructions__start {
-	background: none;
-	color: #fff;
-	font-size: 18px;
-	line-height: 21px;
-	background-color: rgba(149, 10, 198, 0.5);
-	border: none;
-	border-radius: 3px;
-	padding: 16px 33px;
-	outline: none;
-	cursor: pointer;
 }
 section.instructions > button.instructions__start:hover {
 	background-color: rgba(149, 10, 198, 1);
@@ -164,11 +218,7 @@ section.search {
 }
 section.search > input.search__input {
 	width: 100%;
-	height: 48px;
-	background: transparent;
-	border: 1px solid #950ac6;
-	border-radius: 3px;
-	padding: 0 10px;
+	color: #fff;
 }
 section.search > img.search__glass {
 	position: absolute;

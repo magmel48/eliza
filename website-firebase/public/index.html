@@ -23,7 +23,9 @@
 	</head>
 	<body>
 		<aside class="logo">
-			<img src="./images/logo.svg" />
+			<a href="#" class="logo__login">
+				<img src="./images/logo.svg" />
+			</a>
 		</aside>
 
 		<aside class="menu">
@@ -38,16 +40,23 @@
 		</aside>
 
 		<aside class="hamburger-menu hidden">
-			<a href="#" class="hamburger-menu__item">Главная</a>
+			<a href="#" class="hamburger-menu__item menu__index">Главная</a>
 			<a href="#" class="hamburger-menu__item menu__faces">Лица</a>
 			<a href="#" class="hamburger-menu__item menu__manifest">Манифест</a>
 		</aside>
 
 		<main>
+			<div class="page page_login hidden">
+				<section class="login">
+					<input type="text" class="login__name" placeholder="Введи своё имя" />
+					<button type="button" class="button login__start">Начать</button>
+				</section>
+			</div>
+
 			<div class="page page_index">
 				<h1>You are digital</h1>
 				<section class="instructions">
-					<button type="button" class="instructions__start">Начни творить</button>
+					<button type="button" class="button instructions__start">Начни творить</button>
 					<p class="instructions__quote">
 						Like it or not, in the world we are building,<br />
 						you are the rendering;<br />
@@ -75,9 +84,10 @@
 			</div>
 
 			<div class="page page_record hidden">
-				<div class="slider">
-					<div class="slider__handle"></div>
-				</div>
+				<section class="record">
+					<button type="button" class="record__start">Запись</button>
+					<span class="record__seconds">00:00</span>
+				</section>
 			</div>
 
 			<div class="page page_manifest hidden">
@@ -110,5 +120,6 @@
 		<script src="./scripts/index.js"></script>
 		<script src="./scripts/mobile.js"></script>
 		<script src="./scripts/slider.js"></script>
+		<script src="./scripts/record.js"></script>
 	</body>
 </html>
