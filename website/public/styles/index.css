@@ -11,6 +11,22 @@ body {
 	align-items: center;
 }
 
+.hidden {
+	display: none;
+}
+
+.row {
+	display: flex;
+}
+.col {
+	flex: 50%;
+}
+
+.pull-right {
+	display: block;
+	text-align: right;
+}
+
 aside.logo {
 	top: 50px;
 	left: 50px;
@@ -72,4 +88,22 @@ section.instructions > p.instructions__quote {
 	font-size: 16px;
 	line-height: 19px;
 	color: #52495a;
+}
+
+section.manifest {
+	font-size: 16px;
+	line-height: 19px;
+	color: #52495a;
+}
+section.manifest.row {
+	width: 580px;
+}
+section.manifest.row > aside.col {
+	padding: 10px;
+}
+section.manifest p.manifest__author {
+	color: #ee1a1a;
+	float: right;
+	top: 20px;
+	position: relative;
 }
