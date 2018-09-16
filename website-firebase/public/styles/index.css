@@ -157,12 +157,23 @@ section.manifest.row > aside.col {
 	padding: 10px;
 }
 section.manifest p.manifest__author {
-	color: #ee1a1a;
+	color: #950ac6;
 	float: right;
 	top: 20px;
 	position: relative;
 }
 @media (max-width: 375px) {
+	div.page_manifest > h1 {
+		font-size: 18px;
+		line-height: 22px;
+	}
+
+	div.page_manifest {
+		height: 100vh;
+		top: 43px;
+    position: relative;
+	}
+
 	.row {
 		display: block;
 	}
@@ -174,10 +185,30 @@ section.manifest p.manifest__author {
 
 	section.manifest.row {
 		width: unset;
-		padding: 10px;
+		padding: 24px;
 	}
 
 	section.manifest.row > aside.col {
 		padding: 0;
+	}
+
+	section.manifest.row > aside.col > p {
+		font-size: 12px;
+		line-height: 18px;
+	}
+
+	section.manifest p.manifest__author {
+		float: none;
+		text-align: center;
+		width: 100%;
+	}
+
+	section.manifest p.manifest__author > span.pull-right {
+		text-align: center;
+	}
+
+	section.manifest p.manifest__author > span.dash {
+		text-align: center;
+		display: block;
 	}
 }
