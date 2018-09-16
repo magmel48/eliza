@@ -4,8 +4,8 @@ console.log('mediator is ok.');
 const pagesReady = () => {
 	console.log('pages interaction is ready.');
 
-	const facesEl = document.getElementsByClassName('menu__faces').item(0);
-	const manifestEl = document.getElementsByClassName('menu__manifest').item(0);
+	const facesEls = document.getElementsByClassName('menu__faces');
+	const manifestEls = document.getElementsByClassName('menu__manifest');
 
 	const startEl = document.getElementsByClassName('instructions__start').item(0);
 
@@ -23,21 +23,33 @@ const pagesReady = () => {
 		mediator.publish('page_switch');
 	};
 
-	facesEl.addEventListener('click', () => {
-		facesEl.classList.add('menu__active');
-		manifestEl.classList.remove('menu__active');
+	for (let i = 0; i !== facesEls.length; ++i) {
+		facesEls.item(i).addEventListener('click', () => {
+			for (let i = 0; i !== facesEls.length; ++i) {
+				facesEls.item(i).classList.remove('menu__active');
+			}
+			for (let i = 0; i !== facesEls.length; ++i) {
+				manifestEls.item(i).classList.remove('menu__active');
+			}
 
-		hideAllPages();
-		pageFacesEl.classList.remove('hidden');
-	});
+			hideAllPages();
+			pageFacesEl.classList.remove('hidden');
+		});
+	}
 
-	manifestEl.addEventListener('click', () => {
-		facesEl.classList.remove('menu__active');
-		manifestEl.classList.add('menu__active');
+	for (let i = 0; i !== manifestEls.length; ++i) {
+		manifestEls.item(i).addEventListener('click', () => {
+			for (let i = 0; i !== facesEls.length; ++i) {
+				facesEls.item(i).classList.remove('menu__active');
+			}
+			for (let i = 0; i !== facesEls.length; ++i) {
+				manifestEls.item(i).classList.remove('menu__active');
+			}
 
-		hideAllPages();
-		pageManifestEl.classList.remove('hidden');
-	});
+			hideAllPages();
+			pageManifestEl.classList.remove('hidden');
+		});
+	}
 
 	startEl.addEventListener('click', () => {
 		hideAllPages();

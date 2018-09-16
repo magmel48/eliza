@@ -15,7 +15,7 @@ body {
 }
 
 .hidden {
-	display: none;
+	display: none!important;
 }
 
 .row {
@@ -64,8 +64,29 @@ aside.mobile-menu {
 	}
 
 	aside.mobile-menu {
-		display: block;
+    display: block;
 	}
+}
+
+aside.hamburger-menu {
+	left: 0;
+	top: 0;
+	position: absolute;
+	height: 100%;
+	background-color: rgba(149, 10, 198, 1);
+	width: 255px;
+	padding-left: 60px;
+	display: flex;
+	flex-direction: column;
+	padding-top: 90px;
+	z-index: 9999;
+}
+aside.hamburger-menu > a.hamburger-menu__item {
+	color: #fff;
+	font-size: 20px;
+	padding-bottom: 32px;
+	text-decoration: none;
+	display: block;
 }
 
 aside.social {
