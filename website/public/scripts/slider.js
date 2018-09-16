@@ -7,8 +7,10 @@ const sliderReady = () => {
 
 	const sliderEl = document.getElementsByClassName('slider').item(0);
 	const sliderHandleEl = document.getElementsByClassName('slider__handle').item(0);
-	let sliderLeft = 0;
+
 	let sliderWidth = 0;
+	let sliderHandleWidth = 0;
+	let sliderHandleLeft = 0;
 
 	let isInitialized = false;
 	let isOnMove = false;
@@ -20,13 +22,17 @@ const sliderReady = () => {
 	const handleMove = ({ clientX }) => {
 		if (isOnMove) {
 			if (!isInitialized) {
-				const { left, width } = sliderHandleEl.getBoundingClientRect();
-				sliderLeft = left;
+				const { width } = sliderEl.getBoundingClientRect();
+				const { left, width: handleWidth } = sliderHandleEl.getBoundingClientRect();
+
 				sliderWidth = width;
+				sliderHandleLeft = left;
+				sliderHandleWidth = handleWidth;
 				isInitialized = true;
 			}
 
-			sliderHandleEl.style.left = `${clientX - sliderLeft - sliderWidth / 2}px`;
+			const position = Math.min(clientX - sliderHandleLeft, sliderWidth - sliderHandleWidth);
+			sliderHandleEl.style.width = `${position}px`;
 		}
 	};
 

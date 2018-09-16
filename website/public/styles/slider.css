@@ -7,11 +7,12 @@
 }
 
 .slider > .slider__handle {
-	width: 23px;
+	width: 0;
 	height: 125px;
 	left: 0;
 	top: 0;
+	border-right: 23px solid #950ac6;
 	position: absolute;
-	background-color: #950ac6;
+	background-color: #2f2934;
 	cursor: pointer;
 }
