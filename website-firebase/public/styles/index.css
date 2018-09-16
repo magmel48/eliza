@@ -38,12 +38,12 @@ aside.logo {
 	height: 22px;
 }
 
-aside.menu {
+aside.menu, aside.mobile-menu {
 	top: 50px;
 	right: 50px;
 	position: absolute;
 }
-aside.menu > a {
+aside.menu > a, aside.mobile-menu > a {
 	color: #fff;
 	font-size: 16px;
 	line-height: 19px;
@@ -54,6 +54,18 @@ aside.menu > a {
 aside.menu > a.menu__active {
 	border-bottom: 1px solid #950ac6;
 	padding-bottom: 4px;
+}
+aside.mobile-menu {
+	display: none;
+}
+@media (max-width: 375px) {
+	aside.menu {
+		display: none;
+	}
+
+	aside.mobile-menu {
+		display: block;
+	}
 }
 
 aside.social {
@@ -71,6 +83,13 @@ h1 {
 	font-family: 'Montserrat', sans-serif;
 	line-height: 88px;
 	text-align: center;
+	text-transform: uppercase;
+}
+@media (max-width: 375px) {
+	h1 {
+		font-size: 36px;
+		line-height: 44px;
+	}
 }
 
 section.instructions {
@@ -81,16 +100,28 @@ section.instructions > button.instructions__start {
 	color: #fff;
 	font-size: 18px;
 	line-height: 21px;
-	border: 1px solid #ee1a1a;
+	background-color: rgba(149, 10, 198, 0.5);
+	border: none;
 	border-radius: 3px;
 	padding: 16px 33px;
 	outline: none;
 	cursor: pointer;
 }
+section.instructions > button.instructions__start:hover {
+	background-color: rgba(149, 10, 198, 1);
+}
 section.instructions > p.instructions__quote {
 	font-size: 16px;
 	line-height: 19px;
 	color: #52495a;
+}
+@media (max-width: 375px) {
+	section.instructions > button.instructions__start {
+		width: 250px;
+		height: 60px;
+		font-size: 14px;
+		line-height: 16px;
+	}
 }
 
 section.manifest {
