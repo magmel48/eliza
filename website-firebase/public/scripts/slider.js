@@ -5,7 +5,7 @@ const is_touch_device = () => {
 const sliderReady = () => {
 	console.log('slider is ready.');
 
-	const sliderId = 1; // hardcode for now
+	const sliderId = 'color'; // hardcode for now
 	const sliderEl = document.getElementsByClassName('slider').item(0);
 	const sliderHandleEl = document.getElementsByClassName('slider__handle').item(0);
 
