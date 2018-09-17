@@ -6,6 +6,9 @@
 
 		<title>you are digital</title>
 
+		<!-- video.js stuff -->
+		<link href="https://vjs.zencdn.net/7.1.0/video-js.css" rel="stylesheet">
+
 		<!-- firebase stuff -->
 		<script defer src="/__/firebase/5.5.0/firebase-app.js"></script>
 		<script defer src="/__/firebase/5.5.0/firebase-auth.js"></script>
@@ -73,7 +76,12 @@
 					<input type="text" class="search__input" placeholder="Найди своё лицо" />
 					<img src="./images/glass.svg" class="search__glass" />
 				</section>
-				<section class="videos"></section>
+				<section class="videos">
+					<video width="400" height="360" controls preload=auto data-setup="{}" class="video-js">
+						<source src="https://s3.eu-central-1.amazonaws.com/ws-file-sender/video.75.mp4" type="video/mp4">
+						Your browser does not support the video tag.
+					</video>
+				</section>
 			</div>
 
 			<div class="page page_manipulate hidden">
@@ -121,5 +129,8 @@
 		<script src="./scripts/mobile.js"></script>
 		<script src="./scripts/slider.js"></script>
 		<script src="./scripts/record.js"></script>
+
+		<!-- video.js stuff -->
+		<script src="https://vjs.zencdn.net/7.1.0/video.js"></script>
 	</body>
 </html>
