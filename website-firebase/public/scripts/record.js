@@ -1,6 +1,9 @@
 const recordingReady = () => {
 	console.log('recording is ready.');
 
+	const recordText = 'Запись';
+	const stopText = 'Стоп';
+
 	let clientId = 'unset';
 	const recordEl = document.getElementsByClassName('record__start').item(0);
 	const nameEl = document.getElementsByClassName('login__name').item(0);
@@ -10,8 +13,20 @@ const recordingReady = () => {
 	let currentRecordTime = 0;
 	let clearRecordInterval;
 
+	const stop = () => {
+		try {
+			db.ref(`/client/${clientId}/stop`).set(1);
+		} catch (e) { }
+
+		clearInterval(clearRecordInterval);
+		clearRecordInterval = null;
+
+		recordEl.textContent = recordText;
+	};
+
 	recordEl.addEventListener('click', () => {
 		if (clearRecordInterval) {
+			stop();
 			return;
 		}
 
@@ -19,6 +34,7 @@ const recordingReady = () => {
 		nameEl.value = ''; // to support new names
 
 		currentRecordTime = 0;
+		recordEl.textContent = stopText;
 
 		try {
 			// stop
@@ -45,12 +61,7 @@ const recordingReady = () => {
 			secondsEl.textContent = `${seconds}:${milliseconds}`;
 
 			if (currentRecordTime >= maxRecordTime) {
-				try {
-					db.ref(`/client/${clientId}/stop`).set(1);
-				} catch (e) { }
-
-				clearInterval(clearRecordInterval);
-				clearRecordInterval = null;
+				stop();
 			}
 		}, 10);
 	});
