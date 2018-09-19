@@ -8,6 +8,7 @@ to connect with touchdesigner soft
 2. Install pip
 3. Install pipenv
 4. Run `pipenv install` in python directory of touchdesigner-firebase folder
+5. Run `pipenv run python firebase-osc.py` in python directory of touchdesigner-firebase folder
 
 to connect with amazon s3 storage
 ---------------------------------
