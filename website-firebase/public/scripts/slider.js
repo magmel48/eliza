@@ -71,7 +71,7 @@ const sliderReady = () => {
 
 	const sliderId = 'color'; // hardcode for now
 	window.glanceSlider(
-		`/common/${sliderId}`,
+		`/faces/common/${sliderId}`,
 		document.getElementById('color_slider'),
 		document.getElementById('color_slider_handle')
 	);
