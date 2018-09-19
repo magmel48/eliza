@@ -248,6 +248,21 @@ section.manifest p.manifest__author {
 	top: 20px;
 	position: relative;
 }
+
+div.page_record > div.progress {
+	width: unset;
+	height: 4px;
+	margin-top: 25px;
+	margin-left: 15px;
+	margin-right: 15px;
+	margin-bottom: 10px;
+}
+div.page_record > div.progress > div.progress__state {
+	width: 0;
+	height: 4px;
+	background-color: #950ac6;
+}
+
 @media (max-width: 375px) {
 	div.page_manifest > h1 {
 		font-size: 18px;

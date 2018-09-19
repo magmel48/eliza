@@ -14,6 +14,8 @@ const recordingReady = () => {
 	const recordEl = document.getElementsByClassName('record__start').item(0);
 	const nameEl = document.getElementsByClassName('login__name').item(0);
 	const secondsEl = document.getElementsByClassName('record__seconds').item(0);
+	// const progressEl = document.getElementsByClassName('progress').item(0);
+	const progressStateEl = document.getElementsByClassName('progress__state').item(0);
 
 	const maxRecordTime = 6000;
 	let currentRecordTime = 0;
@@ -49,6 +51,8 @@ const recordingReady = () => {
 		currentRecordTime = 0;
 		recordEl.textContent = stopText;
 
+		progressStateEl.style.width = 0;
+
 		try {
 			// stop
 			db.ref(`/client/${clientId}/start`).set(0);
@@ -70,6 +74,8 @@ const recordingReady = () => {
 			if (milliseconds < 10) {
 				milliseconds = `0${milliseconds}`;
 			}
+
+			progressStateEl.style.width = `${100.0 * currentRecordTime / maxRecordTime}%`;
 
 			secondsEl.textContent = `${seconds}:${milliseconds}`;
 			if (currentRecordTime >= maxRecordTime) {
