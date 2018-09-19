@@ -32,3 +32,15 @@ to deploy website into production
 1. Install Node.js
 2. Install npm if it was not with Node.js installer package
 3. Run `firebase deploy` in `website-firebase` directory
+
+TODO
+----
+
+1. Rotation of `common` sliders
+2. Block `common` sliders if more than `n` users
+3. Block recording if some already in progress
+4. Videos page
+5. Videos search
+6. Associate video and user name
+7. Fix desktop
+8. Share videos

@@ -28,7 +28,7 @@ const recordingReady = () => {
 
 		const stop = () => {
 			try {
-				db.ref(`${clientPath}/stop`).set(1);
+				window.db.ref(`${clientPath}/stop`).set(1);
 				recordDb.set(sliderId + 1);
 			} catch (e) { }
 
@@ -54,11 +54,11 @@ const recordingReady = () => {
 
 			try {
 				// stop
-				db.ref(`${clientPath}/start`).set(0);
-				db.ref(`${clientPath}/stop`).set(0);
+				window.db.ref(`${clientPath}/start`).set(0);
+				window.db.ref(`${clientPath}/stop`).set(0);
 
 				// then start
-				db.ref(`${clientPath}/start`).set(1);
+				window.db.ref(`${clientPath}/start`).set(1);
 			} catch (e) {}
 
 			clearRecordInterval = setInterval(() => {

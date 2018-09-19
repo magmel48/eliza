@@ -42,7 +42,7 @@ const sliderReady = () => {
 				setTimeout(() => { // non-blocking
 					const firebaseValue = Math.max(0, position / (sliderWidth - sliderHandleWidth));
 					try {
-						db.ref(dbPath).set(firebaseValue);
+						window.db.ref(dbPath).set(firebaseValue);
 					} catch (e) {}
 				}, 0);
 			}
