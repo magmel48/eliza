@@ -1,10 +1,16 @@
+const generateId = () => {
+	const part1 = Math.random().toString(36).substr(2, 9);
+	const part2 = Math.random().toString(36).substr(2, 9);
+
+	return part1 + part2;
+};
+
 const recordingReady = () => {
 	console.log('recording is ready.');
 
 	const recordText = 'Запись';
 	const stopText = 'Стоп';
 
-	let clientId = 'unset';
 	const recordEl = document.getElementsByClassName('record__start').item(0);
 	const nameEl = document.getElementsByClassName('login__name').item(0);
 	const secondsEl = document.getElementsByClassName('record__seconds').item(0);
@@ -12,6 +18,13 @@ const recordingReady = () => {
 	const maxRecordTime = 6000;
 	let currentRecordTime = 0;
 	let clearRecordInterval;
+
+	const sliderId = nameEl.value || generateId();
+	window.glanceSlider(
+		`/client/${sliderId}`,
+		document.getElementById('record_slider'),
+		document.getElementById('record_slider_handle')
+	);
 
 	const stop = () => {
 		try {
@@ -59,7 +72,6 @@ const recordingReady = () => {
 			}
 
 			secondsEl.textContent = `${seconds}:${milliseconds}`;
-
 			if (currentRecordTime >= maxRecordTime) {
 				stop();
 			}
