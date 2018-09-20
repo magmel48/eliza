@@ -329,4 +329,37 @@ div.page_login {
 		text-align: center;
 		display: block;
 	}
+
+	section.pictures {
+		display: flex;
+	}
+
+	article.picture {
+		width: 50%;
+		padding: 10px;
+	}
+
+	article.picture > img {
+		width: 100%;
+		height: auto;
+	}
+
+	article.picture > div {
+		clear: both;
+    display: table;
+    width: 100%;
+	}
+
+	article.picture span.picture__name {
+		color: #dadada;
+		float: left;
+		max-width: 80%;
+		text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+	}
+
+	article.picture img.picture__download {
+		float: right;
+	}
 }
