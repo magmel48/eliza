@@ -2,6 +2,20 @@ const is_touch_device = () => {
   return 'ontouchstart' in window;
 };
 
+const getRandomSlider = () => {
+	const sliders = [
+		{ id: 'color', displayName: 'Цвет' },
+		{ id: 'hueShift', displayName: 'Оттенок' },
+		{ id: 'RGBdelay', displayName: 'Глитч' },
+		{ id: 'contrast', displayName: 'Контраст' },
+		{ id: 'tile', displayName: 'Зеркало' },
+		{ id: 'to_style', displayName: 'Элементы' }
+	];
+
+	const rnd = parseInt(Math.random() * 6, 10);
+	return sliders[rnd > 5 ? 5 : rnd];
+};
+
 const sliderReady = () => {
 	console.log('slider is ready.');
 
@@ -69,7 +83,12 @@ const sliderReady = () => {
 		});
 	};
 
-	const sliderId = 'color'; // hardcode for now
+	// TODO rotation after each recording
+	const { id: sliderId, displayName } = getRandomSlider();
+
+	const manipulateHeadingEl = document.getElementsByClassName('manipulate__heading').item(0);
+	manipulateHeadingEl.textContent = displayName;
+
 	window.glanceSlider(
 		`/faces/common/${sliderId}`,
 		document.getElementById('color_slider'),
