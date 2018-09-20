@@ -219,11 +219,17 @@ section.instructions > p.instructions__quote {
 	color: #52495a;
 }
 @media (max-width: 375px) {
+	section.instructions {
+		display: flex;
+    flex-direction: column-reverse;
+	}
+
 	section.instructions > button.instructions__start {
 		width: 250px;
 		height: 60px;
 		font-size: 14px;
 		line-height: 16px;
+		margin: 0 auto;
 	}
 }
 
