@@ -5,8 +5,6 @@ const generateId = () => {
 };
 
 const recordingReady = () => {
-	console.log('recording is ready.');
-
 	const sliderId = generateId();
 	const clientPath = `/faces/client/${sliderId}`;
 
@@ -46,7 +44,8 @@ const recordingReady = () => {
 			return;
 		}
 
-		window.db.ref(`/service/${sliderId}`).set(nameEl.value);
+		const inputName = nameEl.value; // because the next instruction is promised
+		window.db.ref(`/service/${sliderId}`).set(inputName);
 
 		nameEl.value = ''; // to support new names
 		recordEl.textContent = stopText;
@@ -84,6 +83,8 @@ const recordingReady = () => {
 			}
 		}, 10);
 	});
+
+	console.log('recording is ready.');
 };
 
 document.addEventListener('DOMContentLoaded', recordingReady);

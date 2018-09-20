@@ -1,6 +1,4 @@
 const mobileReady = () => {
-	console.log('mobile version is ready.');
-
 	const hamburgerEl = document.getElementsByClassName('mobile-menu__hamburger').item(0);
 	const hamburgerMenuEl = document.getElementsByClassName('hamburger-menu').item(0);
 	const hamburgerItemEls = document.getElementsByClassName('hamburger-menu__item');
@@ -15,6 +13,8 @@ const mobileReady = () => {
 			hamburgerMenuEl.classList.add('hidden');
 		});
 	}
+
+	console.log('mobile version is ready.');
 };
 
 document.addEventListener('DOMContentLoaded', mobileReady);

@@ -210,6 +210,7 @@ section.instructions > p.instructions__quote {
 
 div.page_manipulate {
 	width: 100%;
+	text-align: center;
 }
 
 div.page_faces {
@@ -238,6 +239,7 @@ section.manifest {
 }
 section.manifest.row {
 	width: 580px;
+	margin: 0 auto;
 }
 section.manifest.row > aside.col {
 	padding: 10px;
@@ -261,6 +263,11 @@ div.page_record > div.progress > div.progress__state {
 	width: 0;
 	height: 4px;
 	background-color: #950ac6;
+}
+
+div.page_login {
+	max-width: 580px;
+	margin: 0 auto;
 }
 
 @media (max-width: 375px) {
@@ -311,6 +318,7 @@ div.page_record > div.progress > div.progress__state {
 		float: none;
 		text-align: center;
 		width: 100%;
+		top: 0;
 	}
 
 	section.manifest p.manifest__author > span.pull-right {

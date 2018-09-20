@@ -4,6 +4,7 @@
 	border: 1px solid #950ac6;
 	border-radius: 3px;
 	position: relative;
+	margin: 0 auto;
 }
 @media (max-width: 375px) {
 	.slider {

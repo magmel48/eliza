@@ -17,8 +17,6 @@ const getRandomSlider = () => {
 };
 
 const sliderReady = () => {
-	console.log('slider is ready.');
-
 	window.glanceSlider = (dbPath, sliderEl, sliderHandleEl) => {
 		let sliderWidth = 0;
 		let sliderHandleWidth = 0;
@@ -94,6 +92,8 @@ const sliderReady = () => {
 		document.getElementById('color_slider'),
 		document.getElementById('color_slider_handle')
 	);
+
+	console.log('slider is ready.');
 };
 
 document.addEventListener('DOMContentLoaded', sliderReady);

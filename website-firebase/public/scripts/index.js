@@ -2,8 +2,6 @@ const mediator = new Mediator();
 console.log('mediator is ok.');
 
 const pagesReady = () => {
-	console.log('pages interaction is ready.');
-
 	const facesEls = document.getElementsByClassName('menu__faces');
 	const manifestEls = document.getElementsByClassName('menu__manifest');
 	const indexEl = document.getElementsByClassName('menu__index').item(0);
@@ -75,6 +73,8 @@ const pagesReady = () => {
 		hideAllPages();
 		pageRecordEl.classList.remove('hidden');
 	});
+
+	console.log('pages interaction is ready.');
 };
 
 document.addEventListener('DOMContentLoaded', pagesReady);
