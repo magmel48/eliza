@@ -29,7 +29,9 @@ wss.on('connection', function (ws, req) {
 	// Callback from client message
 	ws.on('message', function (message) {
 		console.log('received: %s.', message);
-		upload(message)
+
+		const [filePath, _] = message.split(','); // TODO save _ as client
+		upload(filePath)
 			.then(() => {
 				console.log('successfully uploaded.', message);
 				broadcast(message);  // Return to client
