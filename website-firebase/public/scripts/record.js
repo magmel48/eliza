@@ -24,7 +24,7 @@ const recordingReady = () => {
 	let clearRecordInterval;
 
 	window.glanceSlider(
-		clientPath,
+		`${clientPath}/style`,
 		document.getElementById('record_slider'),
 		document.getElementById('record_slider_handle')
 	);
