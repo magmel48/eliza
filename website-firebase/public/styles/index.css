@@ -271,6 +271,10 @@ div.page_login {
 }
 
 @media (max-width: 375px) {
+	div.page_index > h1 {
+		font-size: 1.8em;
+	}
+
 	div.page_manifest > h1 {
 		font-size: 18px;
 		line-height: 22px;
