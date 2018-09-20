@@ -1,10 +1,10 @@
 const recordingReady = () => {
-	const recordDb = window.db.ref('/service/last_record_id');
+	const recordDb = window.db.ref('/service/next_record_id');
 
 	recordDb.on('value', (snapshot) => {
 		console.log('recording is ready.');
 
-		const sliderId = snapshot.val();
+		const sliderId = snapshot.val() || 0;
 		const clientPath = `/faces/client/${sliderId}`;
 
 		const recordText = 'Запись';
