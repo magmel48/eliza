@@ -9,7 +9,6 @@ to connect with touchdesigner soft
 3. Install pipenv
 4. Run `pipenv install` in python directory of `touchdesigner-firebase` folder
 5. Run `pipenv run python firebase-osc.py` in python directory of `touchdesigner-firebase` folder
-6. Set into firebase database value 0 for `/service/last_record_id` path. Without that record logic will not work
 
 to connect with amazon s3 storage
 ---------------------------------
