@@ -32,7 +32,6 @@ const recordingReady = () => {
 	const stop = () => {
 		try {
 			window.db.ref(`${clientPath}/stop`).set(1);
-			window.db.ref(`/service/${sliderId}`).set(nameEl.value);
 		} catch (e) { }
 
 		clearInterval(clearRecordInterval);
@@ -46,6 +45,8 @@ const recordingReady = () => {
 			stop();
 			return;
 		}
+
+		window.db.ref(`/service/${sliderId}`).set(nameEl.value);
 
 		nameEl.value = ''; // to support new names
 		recordEl.textContent = stopText;
