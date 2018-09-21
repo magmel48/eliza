@@ -9,7 +9,7 @@ module.exports = {
 
 		return new Promise((resolve) => {
 			s3.putObject({
-				Bucket: 'ws-file-sender',
+				Bucket: 'ws-file-sender-1',
 				Body: fs.readFileSync(fullPath),
 				Key: fileName,
 				ACL: 'public-read'
