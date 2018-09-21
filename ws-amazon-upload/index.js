@@ -31,12 +31,14 @@ wss.on('connection', function (ws, req) {
 		console.log('received: %s.', message);
 
 		const [filePath, _] = message.split(','); // TODO save _ as client
+		console.log('will upload', filePath);
 		upload(filePath)
 			.then(() => {
 				console.log('successfully uploaded.', message);
 				broadcast(message);  // Return to client
 			})
-			.catch(() => {
+			.catch((e) => {
+				console.log('an error occured', e);
 				broadcast(message);  // Return to client
 			});
 	});
