@@ -187,7 +187,7 @@ section.record {
 	display: flex;
 }
 section.record > button.record__start {
-	height: 88px;
+	height: 63px;
 	border-radius: 2px;
 	background-color: #1f1e1f;
 	color: #fff;
@@ -196,7 +196,7 @@ section.record > button.record__start {
 	margin-right: 10px;
 }
 section.record > span.record__seconds {
-	height: 86px;
+	height: 61px;
 	color: #fff;
 	flex: 50%;
 	display: flex;
@@ -205,6 +205,19 @@ section.record > span.record__seconds {
 	justify-content: center;
 	align-items: center;
 	margin-left: 10px;
+}
+section.record > span.record__hint {
+	height: 61px;
+	color: #52495a;
+	flex: 50%;
+	display: flex;
+	border: 1px solid #fff;
+	border-radius: 3px;
+	justify-content: center;
+	align-items: center;
+	margin-left: 10px;
+	font-size: 11px;
+	line-height: 13px;
 }
 
 section.instructions {
@@ -276,6 +289,12 @@ section.manifest p.manifest__author {
 	position: relative;
 }
 
+div.page_record > div.slider {
+	height: 105px;
+}
+div.page_record > div.slider > div.slider__handle {
+	height: 105px;
+}
 div.page_record > div.progress {
 	width: unset;
 	height: 4px;

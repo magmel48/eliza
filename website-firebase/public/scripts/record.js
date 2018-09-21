@@ -8,12 +8,13 @@ const recordingReady = () => {
 	const sliderId = generateId();
 	const clientPath = `/faces/client/${sliderId}`;
 
-	const recordText = 'Запись';
+	const recordText = 'Сохранить';
 	const stopText = 'Стоп';
 
 	const recordEl = document.getElementsByClassName('record__start').item(0);
 	const nameEl = document.getElementsByClassName('login__name').item(0);
 	const secondsEl = document.getElementsByClassName('record__seconds').item(0);
+	const hintEl = document.getElementsByClassName('record__hint').item(0);
 	// const progressEl = document.getElementsByClassName('progress').item(0);
 	const progressStateEl = document.getElementsByClassName('progress__state').item(0);
 
@@ -36,6 +37,8 @@ const recordingReady = () => {
 		clearRecordInterval = null;
 
 		recordEl.textContent = recordText;
+		hintEl.classList.remove('hidden');
+		secondsEl.classList.add('hidden');
 	};
 
 	recordEl.addEventListener('click', () => {
@@ -50,6 +53,8 @@ const recordingReady = () => {
 		nameEl.value = ''; // to support new names
 		recordEl.textContent = stopText;
 		progressStateEl.style.width = 0;
+		hintEl.classList.add('hidden');
+		secondsEl.classList.remove('hidden');
 
 		currentRecordTime = 0;
 
