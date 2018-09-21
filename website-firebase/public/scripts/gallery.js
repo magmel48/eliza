@@ -1,4 +1,4 @@
-const galleryReady = () => {
+function galleryReady() {
 	console.log('gallery is ready.');
 
 	const picturesEl = document.getElementsByClassName('pictures').item(0);
