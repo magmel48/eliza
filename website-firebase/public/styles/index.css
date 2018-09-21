@@ -18,13 +18,6 @@ body {
 	justify-content: center;
 	align-items: center;
 }
-@media (max-width: 375px) {
-	body {
-		background-image: url('../images/bg.jpg');
-		background-repeat: no-repeat;
-		background-size: unset;
-	}
-}
 
 main {
 	width: 100%;
@@ -94,6 +87,10 @@ aside.menu, aside.mobile-menu {
 	right: 50px;
 	position: absolute;
 	z-index: 9999;
+}
+aside.menu > a:hover {
+	border-bottom: 1px solid #950ac6;
+	padding-bottom: 4px;
 }
 aside.menu > a, aside.mobile-menu > a {
 	color: #fff;
@@ -324,6 +321,17 @@ div.page_login {
 }
 
 @media (max-width: 375px) {
+	div.page_index {
+		background-image: url('../images/bg.jpg');
+    background-repeat: no-repeat;
+		background-size: unset;
+		height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+	}
+
 	div.page_index > h1 {
 		font-size: 1.8em;
 	}
