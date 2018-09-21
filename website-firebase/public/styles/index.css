@@ -180,6 +180,15 @@ section.login > input.login__name {
 section.login > button.login__start {
 	width: 100%;
 }
+section.login > p.login__hint {
+	color: #fcfcfc;
+	font-size: 16px;
+	text-align: center;
+	line-height: 24px;
+}
+section.login a.login_vk {
+	margin: 0 auto;
+}
 
 section.record {
 	width: unset;

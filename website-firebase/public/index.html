@@ -14,6 +14,12 @@
 		<script defer src="/__/firebase/5.5.0/firebase-storage.js"></script>
 		<script defer src="/__/firebase/init.js"></script>
 
+		<!-- vk stuff -->
+		<script type="text/javascript" src="https://vk.com/js/api/openapi.js?159"></script>
+		<script type="text/javascript">
+			VK.init({ apiId: 6698969 });
+		</script>
+
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
 
@@ -50,7 +56,10 @@
 				<section class="login">
 					<input type="text" class="login__name" placeholder="Введи своё имя" />
 					<button type="button" class="button login__start">Начать</button>
-					<!-- <p>Или войдите с помощью<br />социальных сетей</p> -->
+					<p class="login__hint">Или войдите с помощью ВКонтакте</p>
+					<a href="#" class="login_vk">
+						<img src="./images/login_vk.svg" />
+					</a>
 				</section>
 			</div>
 

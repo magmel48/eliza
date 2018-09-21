@@ -18,6 +18,8 @@ const recordingReady = () => {
 	// const progressEl = document.getElementsByClassName('progress').item(0);
 	const progressStateEl = document.getElementsByClassName('progress__state').item(0);
 
+	const loginEl = document.getElementsByClassName('login_vk').item(0);
+
 	const maxRecordTime = 6000;
 	let currentRecordTime = 0;
 	let clearRecordInterval;
@@ -87,6 +89,17 @@ const recordingReady = () => {
 				stop();
 			}
 		}, 10);
+	});
+
+	loginEl.addEventListener('click', (e) => {
+		e.preventDefault();
+
+		VK.Auth.login((response) => {
+			if (response.session) {
+				const { session: { user: { first_name, last_name } } } = response;
+				nameEl.value = `${first_name} ${last_name}`;
+			}
+		});
 	});
 
 	console.log('recording is ready.');
