@@ -2,8 +2,8 @@ function is_touch_device() {
   return 'ontouchstart' in window;
 };
 
-const getRandomSlider = () => {
-	const sliders = [
+function getRandomSlider() {
+	var sliders = [
 		{ id: 'color', displayName: 'Цвет' },
 		{ id: 'hueShift', displayName: 'Оттенок' },
 		{ id: 'RGBdelay', displayName: 'Глитч' },
@@ -12,30 +12,35 @@ const getRandomSlider = () => {
 		{ id: 'to_style', displayName: 'Элементы' }
 	];
 
-	const rnd = parseInt(Math.random() * 6, 10);
+	var rnd = parseInt(Math.random() * 6, 10);
 	return sliders[rnd > 5 ? 5 : rnd];
 };
 
-const sliderReady = () => {
-	window.glanceSlider = (dbPath, sliderEl, sliderHandleEl) => {
-		let sliderWidth = 0;
-		let sliderHandleWidth = 0;
-		let sliderHandleLeft = 0;
+function sliderReady() {
+	window.glanceSlider = function (dbPath, sliderEl, sliderHandleEl) {
+		var sliderWidth = 0;
+		var sliderHandleWidth = 0;
+		var sliderHandleLeft = 0;
 
-		let isInitialized = false;
-		let isOnMove = false;
+		var isInitialized = false;
+		var isOnMove = false;
 
-		const handleStart = () => {
+		var handleStart = function() {
 			isOnMove = true;
 		};
 
-		const handleMove = (event) => {
+		var handleMove = (event) => {
 			if (isOnMove) {
-				const { clientX, targetTouches } = event;
+				var clientX = event.clientX;
+				var targetTouches = event.targetTouches;
 
 				if (!isInitialized) {
-					const { width } = sliderEl.getBoundingClientRect();
-					const { left, width: handleWidth } = sliderHandleEl.getBoundingClientRect();
+					var rect1 = sliderEl.getBoundingClientRect();
+					var width = rect1.width;
+
+					var rect2 = sliderHandleEl.getBoundingClientRect();
+					var left = rect2.left;
+					var handleWidth = rect2.width;
 
 					sliderWidth = width;
 					sliderHandleLeft = left;
@@ -43,16 +48,16 @@ const sliderReady = () => {
 					isInitialized = true;
 				}
 
-				let x = clientX;
+				var x = clientX;
 				if (typeof x === 'undefined') {
 					x = targetTouches[0].clientX;
 				}
 
-				const position = Math.min(x - sliderHandleLeft, sliderWidth - sliderHandleWidth);
-				sliderHandleEl.style.width = `${position}px`;
+				var position = Math.min(x - sliderHandleLeft, sliderWidth - sliderHandleWidth);
+				sliderHandleEl.style.width = position + 'px';
 
-				setTimeout(() => { // non-blocking
-					const firebaseValue = Math.max(0, position / (sliderWidth - sliderHandleWidth));
+				setTimeout(function () { // non-blocking
+					var firebaseValue = Math.max(0, position / (sliderWidth - sliderHandleWidth));
 					try {
 						window.db.ref(dbPath).set(firebaseValue);
 					} catch (e) {}
@@ -60,7 +65,7 @@ const sliderReady = () => {
 			}
 		};
 
-		const handleEnd = () => {
+		const handleEnd = function () {
 			isOnMove = false;
 		};
 
@@ -75,20 +80,22 @@ const sliderReady = () => {
 		}
 
 		// to avoid any issues with styling
-		mediator.subscribe('page_switch', () => {
+		mediator.subscribe('page_switch', function () {
 			console.log('re-initializing slider.');
 			isInitialized = false;
 		});
-	};
+	}
 
 	// TODO rotation after each recording
-	const { id: sliderId, displayName } = getRandomSlider();
+	var slider = getRandomSlider();
+	var sliderId = slider.id;
+	var displayName = slider.displayName;
 
-	const manipulateHeadingEl = document.getElementsByClassName('manipulate__heading').item(0);
+	var manipulateHeadingEl = document.getElementsByClassName('manipulate__heading').item(0);
 	manipulateHeadingEl.textContent = displayName;
 
 	window.glanceSlider(
-		`/faces/common/${sliderId}`,
+		'/faces/common/' + sliderId,
 		document.getElementById('color_slider'),
 		document.getElementById('color_slider_handle')
 	);

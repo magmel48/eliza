@@ -1,38 +1,38 @@
-const generateId = () => {
-	const part1 = Math.random().toString(36).substr(2, 9);
-	const part2 = Math.random().toString(36).substr(2, 9);
+var generateId = function () {
+	var part1 = Math.random().toString(36).substr(2, 9);
+	var part2 = Math.random().toString(36).substr(2, 9);
  	return part1 + part2;
 };
 
-const recordingReady = () => {
-	const sliderId = generateId();
-	const clientPath = `/faces/client/${sliderId}`;
+function recordingReady() {
+	var sliderId = generateId();
+	var clientPath = '/faces/client/' + sliderId;
 
-	const recordText = 'Сохранить';
-	const stopText = 'Стоп';
+	var recordText = 'Сохранить';
+	var stopText = 'Стоп';
 
-	const recordEl = document.getElementsByClassName('record__start').item(0);
-	const nameEl = document.getElementsByClassName('login__name').item(0);
-	const secondsEl = document.getElementsByClassName('record__seconds').item(0);
-	const hintEl = document.getElementsByClassName('record__hint').item(0);
-	// const progressEl = document.getElementsByClassName('progress').item(0);
-	const progressStateEl = document.getElementsByClassName('progress__state').item(0);
+	var recordEl = document.getElementsByClassName('record__start').item(0);
+	var nameEl = document.getElementsByClassName('login__name').item(0);
+	var secondsEl = document.getElementsByClassName('record__seconds').item(0);
+	var hintEl = document.getElementsByClassName('record__hint').item(0);
+	// var progressEl = document.getElementsByClassName('progress').item(0);
+	var progressStateEl = document.getElementsByClassName('progress__state').item(0);
 
-	const loginEl = document.getElementsByClassName('login_vk').item(0);
+	var loginEl = document.getElementsByClassName('login_vk').item(0);
 
-	const maxRecordTime = 6000;
-	let currentRecordTime = 0;
-	let clearRecordInterval;
+	var maxRecordTime = 6000;
+	var currentRecordTime = 0;
+	var clearRecordInterval;
 
 	window.glanceSlider(
-		`${clientPath}/style`,
+		clientPath + '/style',
 		document.getElementById('record_slider'),
 		document.getElementById('record_slider_handle')
 	);
 
-	const stop = () => {
+	var stop = function () {
 		try {
-			window.db.ref(`${clientPath}/stop`).set(1);
+			window.db.ref(clientPath + '/stop').set(1);
 		} catch (e) { }
 
 		clearInterval(clearRecordInterval);
@@ -43,13 +43,13 @@ const recordingReady = () => {
 		secondsEl.classList.add('hidden');
 	};
 
-	recordEl.addEventListener('click', () => {
+	recordEl.addEventListener('click', function () {
 		if (clearRecordInterval) {
 			stop();
 			return;
 		}
 
-		const inputName = nameEl.value; // because the next instruction is promised
+		var inputName = nameEl.value; // because the next instruction is promised
 		window.db.ref(`/service/${sliderId}`).set(inputName);
 
 		nameEl.value = ''; // to support new names
@@ -62,47 +62,51 @@ const recordingReady = () => {
 
 		try {
 			// stop
-			window.db.ref(`${clientPath}/start`).set(0);
-			window.db.ref(`${clientPath}/stop`).set(0);
+			window.db.ref(clientPath + '/start').set(0);
+			window.db.ref(clientPath + '/stop').set(0);
 
 			// then start
-			window.db.ref(`${clientPath}/start`).set(1);
+			window.db.ref(clientPath + '/start').set(1);
 		} catch (e) {}
 
-		clearRecordInterval = setInterval(() => {
+		clearRecordInterval = setInterval(function () {
 			currentRecordTime += 10;
 
-			let seconds = parseInt(currentRecordTime / 1000, 10);
+			var seconds = parseInt(currentRecordTime / 1000, 10);
 			if (seconds < 10) {
-				seconds = `0${seconds}`;
+				seconds = '0' + seconds;
 			}
 
-			let milliseconds = parseInt((currentRecordTime % 1000) / 10, 10);
+			var milliseconds = parseInt((currentRecordTime % 1000) / 10, 10);
 			if (milliseconds < 10) {
-				milliseconds = `0${milliseconds}`;
+				milliseconds = '0' + milliseconds;
 			}
 
-			progressStateEl.style.width = `${100.0 * currentRecordTime / maxRecordTime}%`;
+			progressStateEl.style.width = (100.0 * currentRecordTime / maxRecordTime) + '%';
 
-			secondsEl.textContent = `${seconds}:${milliseconds}`;
+			secondsEl.textContent = seconds + ':' + milliseconds;
 			if (currentRecordTime >= maxRecordTime) {
 				stop();
 			}
 		}, 10);
 	});
 
-	loginEl.addEventListener('click', (e) => {
+	loginEl.addEventListener('click', function (e) {
 		e.preventDefault();
 
-		VK.Auth.login((response) => {
+		VK.Auth.login(function (response) {
 			if (response.session) {
-				const { session: { user: { first_name, last_name } } } = response;
-				nameEl.value = `${first_name} ${last_name}`;
+				var session = response.session;
+				var user = session.user;
+				var first_name = user.first_name;
+				var last_name = user.last_name;
+
+				nameEl.value = first_name + ' ' + last_name;
 			}
 		});
 	});
 
 	console.log('recording is ready.');
-};
+}
 
 document.addEventListener('DOMContentLoaded', recordingReady);
