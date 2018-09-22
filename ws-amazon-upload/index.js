@@ -68,7 +68,7 @@ const associateWithClientId = (fullPath, clientId) => {
 				'value', (snapshot) => {
 					const value = snapshot.val();
 
-					record.set(`${fileName},${value}`)
+					record.set(`${fileName},${value || ''}`)
 						.then(() => {
 							resolve();
 						})
