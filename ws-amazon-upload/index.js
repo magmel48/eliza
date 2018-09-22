@@ -57,6 +57,32 @@ const fetchFilesList = () => {
 };
 fetchFilesList();
 
+const associateWithClientId = (fullPath, clientId) => {
+	const fileName = fullPath.split(/[\\/]/).pop();
+
+	return new Promise((resolve) => {
+		try {
+			const record = db.ref(`/service/${clientId}`);
+
+			record.once(
+				'value', (snapshot) => {
+					const value = snapshot.val();
+
+					record.set(`${fileName},${value}`)
+						.then(() => {
+							resolve();
+						})
+						.catch(() => {
+							resolve();
+						});
+				}
+			);
+		} catch (e) {
+			resolve();
+		}
+	});
+};
+
 // implement broadcast function because of ws doesn't have it
 const broadcast = (message) => {
 	connects.forEach((socket, i) => {
@@ -79,7 +105,7 @@ wss.on('connection', function (ws, req) {
 	ws.on('message', function (message) {
 		console.log('received: %s.', message);
 
-		const [filePath, _] = message.split(','); // TODO save _ as client
+		const [filePath, clientId] = message.split(',');
 		console.log('will upload', filePath);
 		upload(filePath)
 			.then(() => {
@@ -92,6 +118,9 @@ wss.on('connection', function (ws, req) {
 				fetchFilesList();
 				broadcast(message);  // Return to client
 				return fetchFilesList();
+			})
+			.then(() => {
+				return associateWithClientId(filePath, clientId);
 			})
 			.then(() => {
 				console.log('should be ok.');
