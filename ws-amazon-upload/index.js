@@ -115,7 +115,6 @@ wss.on('connection', function (ws, req) {
 			})
 			.catch((e) => {
 				console.log('an error occured', e);
-				fetchFilesList();
 				broadcast(message);  // Return to client
 				return fetchFilesList();
 			})
