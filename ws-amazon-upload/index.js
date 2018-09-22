@@ -1,12 +1,50 @@
 const express = require('express'),
 	http = require('http'),
-	webSocket = require('ws');
+	webSocket = require('ws'),
+	firebase = require('firebase-admin'),
+	https = require('https'),
+	xml2js = require('xml2js');
 
 const app = express(),
 	server = http.createServer(app),
-	wss = new webSocket.Server({ server });
+	wss = new webSocket.Server({ server }),
+	parser = new xml2js.Parser();
+
+parser.on('error', (err) => { console.log('parser error.', err); });
 
 const { upload } = require('./upload');
+
+const firebaseApp = firebase.initializeApp({
+  credential: firebase.credential.cert(
+    require('./neweeee-76e3e-firebase-adminsdk-txegw-d43aa8dd25.json')
+  ),
+  databaseURL: 'https://neweeee-76e3e.firebaseio.com'
+});
+const db = firebaseApp.database();
+
+const fetchFilesList = () => {
+	let data = '';
+	https.get('https://s3.us-east-2.amazonaws.com/ws-file-sender-1/', (res) => {
+		if (res.statusCode >= 200 && res.statusCode < 400) {
+			res.on('data', (data_) => { data += data_.toString(); });
+			res.on('end', () => {
+				console.log('updated fetch list.', data);
+				parser.parseString(data, (err, result) => {
+					const keys = result.ListBucketResult.Contents.map(({ Key }) => Key[0]);
+
+					db.ref('/service/fileslist').set(keys)
+						.then(() => {
+							console.log('successfully updated files list.');
+						})
+						.catch(() => {
+							console.log('an error occured in updating files list.')
+						});
+				});
+			});
+		}
+	});
+};
+fetchFilesList();
 
 // implement broadcast function because of ws doesn't have it
 const broadcast = (message) => {
@@ -35,10 +73,12 @@ wss.on('connection', function (ws, req) {
 		upload(filePath)
 			.then(() => {
 				console.log('successfully uploaded.', message);
+				fetchFilesList();
 				broadcast(message);  // Return to client
 			})
 			.catch((e) => {
 				console.log('an error occured', e);
+				fetchFilesList();
 				broadcast(message);  // Return to client
 			});
 	});
