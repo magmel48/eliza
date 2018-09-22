@@ -397,10 +397,13 @@ div.page_login {
 
 	section.pictures {
 		display: flex;
+		display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 	}
 
 	article.picture {
-		width: 50%;
+		width: 40%;
 		padding: 10px;
 	}
 

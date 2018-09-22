@@ -23,6 +23,10 @@ function firebaseReady() {
 					on: function (event, callback) {
 						cb = callback;
 						cb({ val: function () { return 1; } });
+					},
+					once: function (event, callback) {
+						cb = callback;
+						cb({ val: function () { return 1; } });
 					}
 				};
 			}

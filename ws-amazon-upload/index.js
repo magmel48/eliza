@@ -24,24 +24,35 @@ const db = firebaseApp.database();
 
 const fetchFilesList = () => {
 	let data = '';
-	https.get('https://s3.us-east-2.amazonaws.com/ws-file-sender-1/', (res) => {
-		if (res.statusCode >= 200 && res.statusCode < 400) {
-			res.on('data', (data_) => { data += data_.toString(); });
-			res.on('end', () => {
-				console.log('updated fetch list.', data);
-				parser.parseString(data, (err, result) => {
-					const keys = result.ListBucketResult.Contents.map(({ Key }) => Key[0]);
 
-					db.ref('/service/fileslist').set(keys)
-						.then(() => {
-							console.log('successfully updated files list.');
-						})
-						.catch(() => {
-							console.log('an error occured in updating files list.')
-						});
+	return new Promise((resolve) => {
+		https.get('https://s3.us-east-2.amazonaws.com/ws-file-sender-1/', (res) => {
+			if (res.statusCode >= 200 && res.statusCode < 400) {
+				res.on('data', (data_) => { data += data_.toString(); });
+				res.on('end', () => {
+					console.log('updated fetch list.', data);
+					parser.parseString(data, (err, result) => {
+						if (err) {
+							console.log('something wrong with xml.');
+						}
+
+						const keys = result.ListBucketResult.Contents.map(({ Key }) => Key[0]);
+
+						db.ref('/service/fileslist').set(keys)
+							.then(() => {
+								console.log('successfully updated files list.');
+								resolve();
+							})
+							.catch(() => {
+								console.log('an error occured in updating files list.');
+								resolve();
+							});
+					});
 				});
-			});
-		}
+			} else {
+				resolve();
+			}
+		});
 	});
 };
 fetchFilesList();
@@ -73,13 +84,17 @@ wss.on('connection', function (ws, req) {
 		upload(filePath)
 			.then(() => {
 				console.log('successfully uploaded.', message);
-				fetchFilesList();
 				broadcast(message);  // Return to client
+				return fetchFilesList();
 			})
 			.catch((e) => {
 				console.log('an error occured', e);
 				fetchFilesList();
 				broadcast(message);  // Return to client
+				return fetchFilesList();
+			})
+			.then(() => {
+				console.log('should be ok.');
 			});
 	});
 
