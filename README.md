@@ -40,8 +40,8 @@ TODO
 1. Rotation of `common` sliders
 2. Block `common` sliders if more than `n` users
 3. Block recording if some already in progress
-4. Pictures page
-5. Pictures search
+4. ~~Pictures page~~
+5. ~~Pictures search~~
 6. ~~Associate picture and user name~~
 7. Fix desktop
 8. (optional) Share pictures

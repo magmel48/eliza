@@ -49,10 +49,8 @@ function recordingReady() {
 			return;
 		}
 
-		var inputName = nameEl.value; // because the next instruction is promised
-		window.db.ref(`/service/${sliderId}`).set(inputName);
+		window.db.ref(`/service/${sliderId}`).set(nameEl.value);
 
-		nameEl.value = ''; // to support new names
 		recordEl.textContent = stopText;
 		progressStateEl.style.width = 0;
 		hintEl.classList.add('hidden');

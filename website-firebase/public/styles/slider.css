@@ -22,4 +22,5 @@
 	position: absolute;
 	background-color: #2f2934;
 	cursor: pointer;
+	z-index: 9999;
 }

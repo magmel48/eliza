@@ -1,5 +1,5 @@
 function is_touch_device() {
-  return 'ontouchstart' in window;
+	return 'ontouchstart' in window;
 };
 
 function getRandomSlider() {

@@ -269,6 +269,7 @@ section.search {
 section.search > input.search__input {
 	width: 100%;
 	color: #fff;
+	max-width: 580px;
 }
 section.search > img.search__glass {
 	position: absolute;
@@ -429,5 +430,10 @@ div.page_login {
 
 	article.picture img.picture__download {
 		float: right;
+	}
+
+	.picture__share {
+		float: right;
+    padding-right: 10px;
 	}
 }

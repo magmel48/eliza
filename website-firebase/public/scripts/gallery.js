@@ -10,16 +10,17 @@ function galleryReady() {
 		}
 
 		// for tests only
-		// if (!Array.isArray(picNames)) {
-		// 	picNames = ["pic.0.jpg", "pic.15.jpg", "pic.16.jpg"];
-		// }
+		if (!Array.isArray(picNames)) {
+			picNames = ["pic.0.jpg", "pic.15.jpg", "pic.16.jpg"];
+		}
 
 		if (isOverrideInitial) {
 			initialPicNames = picNames;
 		}
 
 		picturesEl.innerHTML = '';
-		picNames.slice(picNames.length - 12).forEach(function (picName) { // do not show all
+		var sliceIdx = picNames.length - 20;
+		picNames.slice(sliceIdx < 0 ? 0 : sliceIdx).forEach(function (picName) { // do not show all
 			/* format:
 				<article class="picture">
 						<img class="picture__preview" src="https://sun9-8.userapi.com/c831108/v831108737/170121/5zkKwObvozw.jpg" />
@@ -43,16 +44,24 @@ function galleryReady() {
 			span.classList.add('picture__name');
 			span.textContent = picName;
 
-			var a = document.createElement('a');
-			a.href = s3Url + picName;
+			var a1 = document.createElement('a');
+			a1.href = s3Url + picName;
 
 			var download = document.createElement('img');
 			download.classList.add('picture__download');
 			download.src = './images/download.svg';
 
-			a.appendChild(download);
+			var share = document.createElement('span');
+			share.classList.add('picture__share');
+			share.innerHTML = VK.Share.button(
+				{ url: 'https://goo.gl/BVBDBz', title: 'My digital version', image: s3Url + picName },
+				{ type: 'custom', text: '<img src="./images/share.svg" />' }
+			);
+
+			a1.appendChild(download);
 			div.appendChild(span);
-			div.appendChild(a);
+			div.appendChild(a1);
+			div.appendChild(share);
 			article.appendChild(img);
 			article.appendChild(div);
 
@@ -73,7 +82,7 @@ function galleryReady() {
 				for (var key in info) {
 					if (info.hasOwnProperty(key)) {
 						var value = info[key];
-						if (!Array.isArray(value) && value.indexOf(searchString) !== -1) {
+						if (!Array.isArray(value) && value.toLowerCase().indexOf(searchString.toLowerCase()) !== -1) {
 							var picName = value.split(',');
 							pics.push(picName[0]);
 						}
