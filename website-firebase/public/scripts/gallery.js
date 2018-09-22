@@ -5,11 +5,11 @@ function galleryReady() {
 	db.ref('/service/fileslist').once('value', function (snapshot) {
 		var picNames = snapshot.val();
 		if (!Array.isArray(picNames)) {
-			picNames = ["pic.0.jpg", "pic.14.jpg", "pic.15.jpg", "pic.16.jpg"];
+			picNames = ["pic.0.jpg", "pic.15.jpg", "pic.16.jpg"];
 		}
 
 		picturesEl.innerHTML = '';
-		picNames.forEach(function (picName) {
+		picNames.slice(picNames.length - 12).forEach(function (picName) { // do not show all
 			/*
 				<article class="picture">
 						<img class="picture__preview" src="https://sun9-8.userapi.com/c831108/v831108737/170121/5zkKwObvozw.jpg" />
