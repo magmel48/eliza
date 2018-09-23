@@ -6,7 +6,7 @@
 	position: relative;
 	margin: 0 auto;
 }
-@media (max-width: 375px) {
+@media (max-width: 415px) {
 	.slider {
 		width: unset;
 		margin: 0 15px;

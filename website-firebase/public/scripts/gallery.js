@@ -1,3 +1,10 @@
+var sort = function (a, b) {
+	var idx1 = a.split('.')[1];
+	var idx2 = b.split('.')[1];
+
+	return idx1 - idx2;
+}
+
 function galleryReady() {
 	var s3Url = '';
 	var picturesEl = document.getElementsByClassName('pictures').item(0);
@@ -20,7 +27,7 @@ function galleryReady() {
 
 		picturesEl.innerHTML = '';
 		var sliceIdx = picNames.length - 20;
-		picNames.slice(sliceIdx < 0 ? 0 : sliceIdx).forEach(function (picName) { // do not show all
+		picNames.sort(sort).slice(sliceIdx < 0 ? 0 : sliceIdx).forEach(function (picName) { // do not show all
 			/* format:
 				<article class="picture">
 						<img class="picture__preview" src="https://sun9-8.userapi.com/c831108/v831108737/170121/5zkKwObvozw.jpg" />
@@ -91,8 +98,14 @@ function galleryReady() {
 
 				init(pics, false);
 			});
-		} else if (e.keyCode === 8) {
-			init(null, true);
+		} else if (e.keyCode === 8 && (searchString || '').length === 1) {
+			db.ref('/service/fileslist').once('value', function (snapshot) {
+				init(snapshot.val(), true);
+			});
+		} else {
+			db.ref('/service/fileslist').once('value', function (snapshot) {
+				init(snapshot.val(), true);
+			});
 		}
 	});
 
