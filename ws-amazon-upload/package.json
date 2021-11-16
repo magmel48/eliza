@@ -9,7 +9,7 @@
   "author": "eliza",
   "license": "MIT",
   "dependencies": {
-    "aws-sdk": "^2.315.0",
+    "aws-sdk": "^2.814.0",
     "express": "^4.16.3",
     "firebase-admin": "^6.0.0",
     "ws": "^6.0.0",
